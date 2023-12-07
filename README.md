@@ -91,7 +91,8 @@ This is how to set it up from Ubuntu:
 - Go to DynamoDB and create a table.
 - Go to SNS and create a new topic.
 - Select the topic you created and create a new subscription.
-- Go to EC2 and launch a t2.medium instance with 20GB storage size.
+- Go to the S3 bucket you created and create a new event notification.
+- Go to EC2 and launch a t2.medium instance with 8GB storage size.
 - Go to IAM and create an access role for the EC2 instance with the following policies: **AmazonKinesisVideoStreamsFullAccess**, **AmazonDynamoDBFullAccess**, **AmazonS3FullAccess** and **AmazonRekognitionFullAccess**.
 - Attach the IAM role to the EC2 instance.
 - SSH into the EC2 instance.
@@ -110,10 +111,6 @@ This is how to set it up from Ubuntu:
       cd amazon-kinesis-video-streams-consumer-library-for-python
   
       pip install -r requirements.txt
-
-      sudo apt-get update && sudo apt-get install ffmpeg libsm6 libxext6  -y
-
-      sudo apt-get install python3-tk
 
 - Edit region name and stream name.
 - Add intruder detection funcionality.
