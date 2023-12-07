@@ -58,7 +58,7 @@ This is how to set it up from Ubuntu:
 ### setting up consumer #1: backup
 
 - Go to S3 and create an S3 bucket.
-- Go to EC2 and launch a t2.medium instance with 20GB storage size.
+- Go to EC2 and launch a t2.medium instance with 8GB storage size.
 - Go to IAM and create an access role for the EC2 instance with the following policies: **AmazonKinesisVideoStreamsFullAccess** and **AmazonS3FullAccess**.
 - Attach the IAM role to the EC2 instance.
 - SSH into the EC2 instance.
@@ -77,10 +77,6 @@ This is how to set it up from Ubuntu:
       cd amazon-kinesis-video-streams-consumer-library-for-python
   
       pip install -r requirements.txt
-
-      sudo apt-get update && sudo apt-get install ffmpeg libsm6 libxext6  -y
-
-      sudo apt-get install python3-tk
 
 - Edit region name and stream name.
 - Add backup funcionality.
