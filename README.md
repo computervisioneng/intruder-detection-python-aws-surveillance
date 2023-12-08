@@ -48,6 +48,7 @@ This is how to set it up from Ubuntu:
 
       export LD_LIBRARY_PATH=`pwd`/open-source/local/lib
 
+- Go to Kinesis Video Streams and create a new video stream.
 - Go to IAM and create a new user with **AmazonKinesisVideoStreamsFullAccess** permissions.
 - Select the IAM user you created, go to _Security credentials_ and create access keys.
 - Execute the following command:
