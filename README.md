@@ -78,8 +78,6 @@ This is how to set it up from Ubuntu:
   
       pip install -r requirements.txt
 
-      sudo apt-get update && sudo apt-get install ffmpeg libsm6 libxext6  -y
-
 - Edit region name and stream name.
 - Add backup funcionality.
 - Execute the following commands:
@@ -113,6 +111,8 @@ This is how to set it up from Ubuntu:
       cd amazon-kinesis-video-streams-consumer-library-for-python
   
       pip install -r requirements.txt
+
+      sudo apt-get update && sudo apt-get install ffmpeg libsm6 libxext6  -y
 
 - Edit region name and stream name.
 - Add intruder detection funcionality.
