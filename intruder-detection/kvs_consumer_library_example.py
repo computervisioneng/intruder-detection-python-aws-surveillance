@@ -25,26 +25,6 @@ import numpy as np
 import cv2
 
 
-def get_normalized_coordinates(instance, H, W):
-    box = instance['BoundingBox']
-    width = box['Width']
-    height = box['Height']
-    left = box['Left']
-    top = box['Top']
-
-    # Convert normalized coordinates to pixel values
-    image_width = W
-    image_height = H
-
-    x_min = int(left * image_width)
-    y_min = int(top * image_height)
-    x_max = int((left + width) * image_width)
-    y_max = int((top + height) * image_height)
-
-    return x_min, y_min, x_max, y_max
-
-
-
 # Config the logger.
 log = logging.getLogger(__name__)
 logging.basicConfig(format="[%(name)s.%(funcName)s():%(lineno)d] - [%(levelname)s] - %(message)s", 
@@ -244,7 +224,6 @@ class KvsPythonConsumerExample:
             ndarray_frames = self.kvs_fragment_processor.get_frames_as_ndarray(fragment_bytes, one_in_frames_ratio)
             for i in range(len(ndarray_frames)):
                 ndarray_frame = ndarray_frames[i]
-                H, W, _ = ndarray_frame.shape
                 log.info(f'Frame-{i} Shape: {ndarray_frame.shape}')
 
                 image = Image.fromarray(ndarray_frame)
@@ -260,17 +239,11 @@ class KvsPythonConsumerExample:
 
                 for label in response['Labels']:
                     if label['Name'] in ['Person']:
-                        for instance_nmr, instance in enumerate(label.get('Instances', [])):
-                            x_min, y_min, x_max, y_max = get_normalized_coordinates(instance, H, W)
 
-                            crop = ndarray_frame[y_min:y_max, x_min:x_max, :]
+                        ret, buffer = cv2.imencode('.jpg', cv2.cvtColor(ndarray_frame, cv2.COLOR_BGR2RGB))
+                        bytes_io = BytesIO(buffer)
 
-                            crop = cv2.cvtColor(crop, cv2.COLOR_BGR2RGB)
-
-                            ret, buffer = cv2.imencode('.jpg', crop)
-                            bytes_io = BytesIO(buffer)
-
-                            s3_client.upload_fileobj(bytes_io, 'intruder-detection-bucket', 'detections/{}_{}_{}.jpg'.format(self.last_good_fragment_tags['AWS_KINESISVIDEO_FRAGMENT_NUMBER'], str(i * one_in_frames_ratio), str(instance_nmr)))
+                        s3_client.upload_fileobj(bytes_io, 'intruder-detection-bucket', 'detections/{}_{}.jpg'.format(self.last_good_fragment_tags['AWS_KINESISVIDEO_FRAGMENT_NUMBER'], str(i * one_in_frames_ratio)))
 
                         item_data = {
                                 'fragment_number': self.last_good_fragment_tags['AWS_KINESISVIDEO_FRAGMENT_NUMBER'],
