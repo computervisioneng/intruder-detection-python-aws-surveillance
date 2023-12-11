@@ -1,7 +1,7 @@
 # intruder-detection-python-aws-surveillance
 
 <p align="center">
-<a href="https://www.youtube.com/watch?v=">
+<a href="https://www.youtube.com/watch?v=ZvBZh8ky-zQ">
     <img width="100%" src="thumbnail.jpg" alt="Watch the video">
 </a>
 </p>
