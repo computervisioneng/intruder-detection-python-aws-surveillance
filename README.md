@@ -12,6 +12,10 @@
     <img src="https://github.com/computervisioneng/intruder-detection-python-aws-surveillance/blob/main/pipeline.jpg" alt="Project pipeline">
 </p>
 
+## code
+
+If you follow the video there is a very small bug at the end, working in the consumer that takes care of the intruder detection, in the code that puts a new item in the database. The code is fixed [here](https://github.com/computervisioneng/intruder-detection-python-aws-surveillance/blob/main/intruder-detection/kvs_consumer_library_example.py).  
+
 ## execution
 
 ### setting up producer
