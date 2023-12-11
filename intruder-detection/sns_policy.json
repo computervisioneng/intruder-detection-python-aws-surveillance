@@ -1,0 +1,23 @@
+{
+    "Version": "2012-10-17",
+    "Id": "example-ID",
+    "Statement": [
+        {
+            "Sid": "Example SNS topic policy",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "s3.amazonaws.com"
+            },
+            "Action": "SNS:Publish",
+            "Resource": "SNS-TOPIC-ARN",
+            "Condition": {
+                "ArnLike": {
+                    "aws:SourceArn": "S3-BUCKET-ARN"
+                },
+                "StringEquals": {
+                    "aws:SourceAccount": "ACCOUNT-ID"
+                }
+            }
+        }
+    ]
+}
