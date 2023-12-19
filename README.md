@@ -14,7 +14,7 @@
 
 ## code
 
-If you follow the video there is a very small bug at the end, working in the consumer that takes care of the intruder detection, in the code that puts a new item in the database. The code is fixed [here](https://github.com/computervisioneng/intruder-detection-python-aws-surveillance/blob/main/intruder-detection/kvs_consumer_library_example.py).  
+If you watch the video, you'll notice a minor bug towards the end. It pertains to the consumer responsible for the intruder detection in the code that adds a new item to the database. The issue has been addressed in the corrected code provided [here](https://github.com/computervisioneng/intruder-detection-python-aws-surveillance/blob/main/intruder-detection/kvs_consumer_library_example.py).  
 
 ## execution
 
